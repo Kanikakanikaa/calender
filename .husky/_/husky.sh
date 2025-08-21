@@ -1,29 +1,9 @@
-#!/bin/sh
-# shellcheck shell=sh
+echo "husky - DEPRECATED
 
-if [ -z "$husky_skip_init" ]; then
-  debug () {
-    [ "$HUSKY_DEBUG" = "1" ] && echo "husky (debug) - $*"
-  }
+Please remove the following two lines from $0:
 
-  readonly hook_name="$(basename "$0")"
-  debug "starting $hook_name..."
+#!/usr/bin/env sh
+. \"\$(dirname -- \"\$0\")/_/husky.sh\"
 
-  if [ "$HUSKY" = "0" ]; then
-    debug "HUSKY env variable is set to 0, skipping hook"
-    exit 0
-  fi
-
-  if [ ! -d .git ]; then
-    debug ".git directory not found, skipping hook"
-    exit 0
-  fi
-
-  if command -v npx > /dev/null 2>&1; then
-    debug "running npx --no-install husky-run $hook_name"
-    npx --no-install husky-run "$hook_name" "$@"
-  else
-    echo "can't find npx in PATH"
-    exit 127
-  fi
-fi
+They WILL FAIL in v10.0.0
+"
