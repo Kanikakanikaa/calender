@@ -1,23 +1,5 @@
 import moment from 'moment'
 import { Calendar } from 'react-big-calendar'
-// import format from 'date-fns/format'
-// import parse from 'date-fns/parse'
-// import startOfWeek from 'date-fns/startOfWeek'
-// import getDay from 'date-fns/getDay'
-// import enUS from 'date-fns/locale/en-US'
-
-// const locales = {
-//   'en-US': enUS,
-// }
-
-// const localizer = dateFnsLocalizer({
-//   format,
-//   parse,
-//   startOfWeek,
-//   getDay,
-//   locales,
-// })
-//array of objects
 const events = [
   {
     title: 'Meeting',
@@ -42,7 +24,7 @@ const events = [
 function MyCalendar({localizer}:any) {
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">My Calendar</h2>
+      {/* <h2 className="text-2xl font-semibold mb-4">My Calendar</h  2> */}
       <Calendar
         localizer={localizer}
         events={events}
@@ -58,9 +40,10 @@ function MyCalendar({localizer}:any) {
         // toolbar={false}
         // max={ moment('2025-08-26T12:12:00').toDate()}
         // min={moment('2025-08-26T16:16:00').toDate()}
+        formats={{dayHeaderFormat:(date)=>moment(date).format('dddd @ DD')}}
       />
     </div>
   )
-}
+} 
 
 export default MyCalendar
