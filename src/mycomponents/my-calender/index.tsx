@@ -32,14 +32,14 @@ function MyCalendar({localizer}:any) {
         endAccessor="end"
         style={{ height: 600 }}
         //if want only one view default
-        defaultView={'week'}
+        defaultView={'month'}
         //if change view
         views={['month','week','day']}
         //specific date
         // date={moment('2025-10-22').toDate()}
         // toolbar={false}
-        // max={ moment('2025-08-26T12:12:00').toDate()}
-        // min={moment('2025-08-26T16:16:00').toDate()}
+        max={ moment('2025-08-26T12:12:00').toDate()}
+        min={moment('2025-08-26T16:16:00').toDate()}
         formats={{dayHeaderFormat:(date)=>moment(date).format('dddd @ DD')}}
       />
     </div>

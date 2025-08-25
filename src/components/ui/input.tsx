@@ -5,9 +5,9 @@ import { Label } from "./label";
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
   error?: any;
-  Icon?: React.ReactNode;
-  onIconClick?: () => void;
-  IconPosition?: string;
+  // Icon?: React.ReactNode;
+  // onIconClick?: () => void;
+  // IconPosition?: string;
   showEye?: boolean;
 }
 function Input({
@@ -15,9 +15,9 @@ function Input({
   type = "text",
   label = null,
   error = "",
-  Icon = null,
-  IconPosition = 'right-0 inset-y-0 pr-2',
-  onIconClick,
+  // Icon = null,
+  // IconPosition = 'right-0 inset-y-0 pr-2',
+  // onIconClick,
   ...props
 }: InputProps) {  return (
     <div className="flex flex-col gap-1.5 w-full">
