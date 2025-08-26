@@ -14,8 +14,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useCalender } from '@/utils/useCal';
 
 export default function Header() {
+        const{ handleNavigate,handleViewChange,currentView}=useCalender();
+    
   return (
     <div className="w-full min-h-16 flex justify-between items-center pr-4 text-black/80">
       <div className="flex items-center w-full ">
@@ -33,15 +36,18 @@ export default function Header() {
             variant={'outline'}
             className="rounded-full bg-transparent border hover:bg-black/5 cursor-pointer border-black/40"
             size={'lg'}
+            onClick={()=>handleNavigate('TODAY')}
           >
             Today
           </Button>
           <div className="flex items-center">
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
-              <ChevronLeftIcon width={20} height={20} />
+              <ChevronLeftIcon width={20} height={20}            onClick={()=>handleNavigate('PREV')}
+ />
             </div>
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
-              <ChevronRightIcon width={20} height={20} />
+            
+              <ChevronRightIcon width={20} height={20}  onClick={()=>handleNavigate('NEXT')} />
             </div>
           </div>
           <div className="text-xl">August 2025</div>
@@ -49,20 +55,25 @@ export default function Header() {
       </div>
       <div className="flex justify-end w-full gap-3">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button
               variant={'outline'}
               className="rounded-full bg-transparent border hover:bg-black/5 cursor-pointer border-black/40"
               size={'lg'}
             >
-              Week
+             {currentView.charAt(0).toUpperCase() + currentView.slice(1)}
               <ChevronDownIcon />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>Day</DropdownMenuItem>
+              {['Day', 'Week', 'Month'].map((view) => (
+              <DropdownMenuItem key={view} onClick={() => handleViewChange(view?.toLowerCase() as any)}>
+                {view.charAt(0).toUpperCase() + view.slice(1)}
+              </DropdownMenuItem>
+            ))}
+            {/* <DropdownMenuItem>Day</DropdownMenuItem>
             <DropdownMenuItem>Week</DropdownMenuItem>
-            <DropdownMenuItem>Month</DropdownMenuItem>
+            <DropdownMenuItem>Month</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
