@@ -8,12 +8,13 @@ import './layout.scss'
 
 const Layout = () => {
      const localizer = momentLocalizer(moment);
+     console.log({localizer});
   return (
     <div className="outer">
 
         <Header/>
         <AppSidebar/>
-        <MyCalendar localizer={localizer}/>
+            <MyCalendar localizer={localizer}/>
     </div>
   )
 }

@@ -5,12 +5,15 @@ import './App.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-calendar/dist/Calendar.css';
 import Layout from './Layout';
+import { CalenderContextProvider } from './utils/useCal';
 
 function App() {
 
   return (
     <>
+    <CalenderContextProvider>
        <Layout/>
+       </CalenderContextProvider>
   {/* <RouterProvider router={router} /> */}
     </>
   )
