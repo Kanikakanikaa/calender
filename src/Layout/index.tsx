@@ -5,14 +5,17 @@ import { momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { AppSidebar } from '@/mycomponents/sidebar';
 import './layout.scss';
+import { useState } from 'react';
 
 const Layout = () => {
+        const[active,setActive]=useState(true)
+
   const localizer = momentLocalizer(moment);
   return (
     <div className="w-full flex flex-col bg-black/3 h-full pb-4">
-      <Header />
+      <Header setActive={setActive} active={active} />
       <div className="flex h-full ">
-        <AppSidebar />
+        <AppSidebar active={active}/>
         <div className="w-full  px-4">
           <MyCalendar localizer={localizer} />
         </div>

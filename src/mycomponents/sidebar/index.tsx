@@ -5,15 +5,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { useCalender } from '@/utils/useCal';
 import { ChevronDownIcon } from 'lucide-react';
 
-export function AppSidebar() {
+export function AppSidebar({active}:any) {
           const{ handleViewChange,currentView}=useCalender();
   
   return (
-    <div className="w-full max-w-60 p-4 pr-0">
-      <DropdownMenu>
+    <div className={`w-full max-w-60 p-4 pr-0  ${active?"":'hidden'} `}>
+ <div className="flex items-center space-x-2">
+      <Label htmlFor="airplane-mode">Tasks</Label>
+      <Switch id="airplane-mode" />
+      <Label htmlFor="airplane-mode">Ev</Label>
+      <Switch id="airplane-mode" />
+    </div>
+    
+    <DropdownMenu>
         <DropdownMenuTrigger className="w-full">
           <Button
             variant={'outline'}
@@ -32,6 +41,7 @@ export function AppSidebar() {
             ))}
         </DropdownMenuContent>
       </DropdownMenu>
+
     </div>
   );
 }

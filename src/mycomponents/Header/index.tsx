@@ -16,14 +16,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useCalender } from '@/utils/useCal';
 
-export default function Header() {
+export default function Header({active,setActive}:any) {
         const{ handleNavigate,handleViewChange,currentView}=useCalender();
     
   return (
     <div className="w-full min-h-16 flex justify-between items-center pr-4 text-black/80">
       <div className="flex items-center w-full ">
         <div className="flex gap-3 items-center w-full max-w-60 pl-4">
-          <div className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5 ">
+          <div className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5 " onClick={()=>setActive(!active)}>
             <MenuIcon />
           </div>
           <div className="flex gap-2 items-center text-lg">

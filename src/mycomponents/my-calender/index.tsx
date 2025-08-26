@@ -21,7 +21,7 @@ const events = [
 
 function MyCalendar({ localizer }: any) {
     const{ calendarRef,currentDate,currentView}=useCalender();
-    console.log({currentView});
+      console.log({currentView});
 
   return (
     <div className="p-4 w-full h-full bg-white  rounded-3xl customCalendar">
