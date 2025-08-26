@@ -16,18 +16,21 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useCalender } from '@/utils/useCal';
 
-export default function Header({active,setActive}:any) {
-        const{ handleNavigate,handleViewChange,currentView}=useCalender();
-    
+export default function Header({ active, setActive }: any) {
+  const { handleNavigate, handleViewChange, currentView } = useCalender();
+
   return (
     <div className="w-full min-h-16 flex justify-between items-center pr-4 text-black/80">
       <div className="flex items-center w-full ">
         <div className="flex gap-3 items-center w-full max-w-60 pl-4">
-          <div className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5 " onClick={()=>setActive(!active)}>
+          <div
+            className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5 "
+            onClick={() => setActive(!active)}
+          >
             <MenuIcon />
           </div>
           <div className="flex gap-2 items-center text-lg">
-            <img src={logo} alt="headerLogo" width={40} height={40} />
+            <img src={logo} alt="headerLogo" width={20} />
             Calendar
           </div>
         </div>
@@ -36,18 +39,16 @@ export default function Header({active,setActive}:any) {
             variant={'outline'}
             className="rounded-full bg-transparent border hover:bg-black/5 cursor-pointer border-black/40"
             size={'lg'}
-            onClick={()=>handleNavigate('TODAY')}
+            onClick={() => handleNavigate('TODAY')}
           >
             Today
           </Button>
           <div className="flex items-center">
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
-              <ChevronLeftIcon width={20} height={20}            onClick={()=>handleNavigate('PREV')}
- />
+              <ChevronLeftIcon width={20} height={20} onClick={() => handleNavigate('PREV')} />
             </div>
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
-            
-              <ChevronRightIcon width={20} height={20}  onClick={()=>handleNavigate('NEXT')} />
+              <ChevronRightIcon width={20} height={20} onClick={() => handleNavigate('NEXT')} />
             </div>
           </div>
           <div className="text-xl">August 2025</div>
@@ -61,13 +62,16 @@ export default function Header({active,setActive}:any) {
               className="rounded-full bg-transparent border hover:bg-black/5 cursor-pointer border-black/40"
               size={'lg'}
             >
-             {currentView.charAt(0).toUpperCase() + currentView.slice(1)}
+              {currentView.charAt(0).toUpperCase() + currentView.slice(1)}
               <ChevronDownIcon />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-              {['Day', 'Week', 'Month'].map((view) => (
-              <DropdownMenuItem key={view} onClick={() => handleViewChange(view?.toLowerCase() as any)}>
+            {['Day', 'Week', 'Month'].map((view) => (
+              <DropdownMenuItem
+                key={view}
+                onClick={() => handleViewChange(view?.toLowerCase() as any)}
+              >
                 {view.charAt(0).toUpperCase() + view.slice(1)}
               </DropdownMenuItem>
             ))}
