@@ -6,7 +6,7 @@ export function AppSidebar({ active }: any) {
 
   return (
     <div
-      className={`w-full max-w-60 p-4 pr-0 max-h-[calc(100vh-70px)] overflow-auto  ${active ? '' : 'hidden'} `}
+      className={`w-full max-w-60 p-4 pr-0 max-h-[calc(100vh-70px)] overflow-auto transition duration-700  ${active ? '' : 'hidden'} `}
     >
       <div className="flex flex-col gap-4 w-full py-4">
         <div className="flex items-center justify-between w-full ">
