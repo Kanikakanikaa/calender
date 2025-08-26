@@ -27,7 +27,7 @@ function MyCalendar({ localizer }: any) {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 600 }}
+        style={{ height: '100%' }}
         //if want only one view default
         defaultView={'month'}
         //if change view
