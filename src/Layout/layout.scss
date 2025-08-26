@@ -37,11 +37,16 @@
         }
       }
       .rbc-row-content {
-        .rbc-row-segment {
-          .rbc-event {
-            background-color: rgb(21, 237, 231);
-            color: #000;
-            font-size: 13px;
+        .rbc-row {
+          .rbc-date-cell {
+            font-size: 12px;
+          }
+          .rbc-row-segment {
+            .rbc-event {
+              background-color: rgb(21, 237, 231);
+              color: #000;
+              font-size: 13px;
+            }
           }
         }
       }
