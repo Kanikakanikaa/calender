@@ -1,21 +1,24 @@
-import Header from "@/mycomponents/Header"
-import MyCalendar from "@/mycomponents/my-calender"
+import Header from '@/mycomponents/Header';
+import MyCalendar from '@/mycomponents/my-calender';
 // import { Sidebar } from "lucide-react"
 import { momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-import { AppSidebar } from "@/mycomponents/sidebar";
-import './layout.scss'
+import { AppSidebar } from '@/mycomponents/sidebar';
+import './layout.scss';
 
 const Layout = () => {
-     const localizer = momentLocalizer(moment);
+  const localizer = momentLocalizer(moment);
   return (
-    <div className="outer">
-
-        <Header/>
-        <AppSidebar/>
-        <MyCalendar localizer={localizer}/>
+    <div className="w-full flex flex-col bg-black/3 h-full pb-4">
+      <Header />
+      <div className="flex h-full ">
+        <AppSidebar />
+        <div className="w-full  px-4">
+          <MyCalendar localizer={localizer} />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
