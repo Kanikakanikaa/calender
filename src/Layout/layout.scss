@@ -3,6 +3,7 @@
     .rbc-toolbar {
       display: none;
     }
+    /******Month view*****/
     .rbc-month-view {
       min-height: 60px;
       border-radius: 16px;
@@ -37,11 +38,93 @@
         }
       }
       .rbc-row-content {
-        .rbc-row-segment {
-          .rbc-event {
+        .rbc-row {
+          .rbc-date-cell {
+            font-size: 12px;
+          }
+          .rbc-row-segment {
+            .rbc-event {
+              background-color: rgb(21, 237, 231);
+              color: #000;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+
+    /******time view*****/
+    .rbc-time-view {
+      min-height: 60px;
+      border-radius: 16px;
+      .rbc-time-header {
+        border: none;
+        background-color: #000;
+        border-radius: 16px 16px 0 0;
+        // .rbc-label {
+        //   &.rbc-time-header-gutter {
+        //     width: 66.9px;
+        //   }
+        // }
+        .rbc-time-header-content {
+          border: none;
+          .rbc-allday-cell {
+            display: none;
+          }
+          .rbc-row {
+            &.rbc-time-header-cell {
+              .rbc-header {
+                border: none;
+                .rbc-button-link {
+                  min-height: 60px;
+                  span {
+                    color: rgb(21, 237, 231);
+                    font-weight: 400;
+                    font-size: 18px;
+                  }
+                }
+                &.rbc-today {
+                  background: rgba(21, 237, 231, 0.3);
+                  span {
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .rbc-time-content {
+        max-height: calc(100vh - 173px);
+        .rbc-time-gutter {
+          .rbc-timeslot-group {
+            .rbc-time-slot {
+              span {
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 13px;
+              }
+            }
+          }
+        }
+        .rbc-day-slot {
+          &.rbc-now {
+            &.rbc-today {
+              background-color: rgba(21, 237, 231, 0.1);
+              span {
+                color: rgba(0, 0, 0, 0.8);
+              }
+            }
+          }
+          .rbc-events-container {
+            .rbc-event {
+              background: rgb(21, 237, 231);
+              color: #000;
+              border-color: rgb(21, 237, 231);
+              font-size: 13px;
+            }
+          }
+          .rbc-current-time-indicator {
             background-color: rgb(21, 237, 231);
-            color: #000;
-            font-size: 13px;
           }
         }
       }

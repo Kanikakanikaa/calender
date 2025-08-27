@@ -30,7 +30,7 @@ export default function Header({ active, setActive }: any) {
             <MenuIcon />
           </div>
           <div className="flex gap-2 items-center text-lg">
-            <img src={logo} alt="headerLogo" width={40} height={40} />
+            <img src={logo} alt="headerLogo" width={20} />
             Calendar
           </div>
         </div>
