@@ -7,22 +7,23 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { useCalender } from '@/utils/useCal';
+import { useCalender } from '@/utils/hooks/useCalender';
 import { ChevronDownIcon } from 'lucide-react';
+import Calendar from 'react-calendar';
 
-export function AppSidebar({active}:any) {
-          const{ handleViewChange,currentView}=useCalender();
-  
+export function AppSidebar({ active }: any) {
+  const { handleSetDate, handleViewChange, currentView, currentDate } = useCalender();
+
   return (
-    <div className={`w-full max-w-60 p-4 pr-0  ${active?"":'hidden'} `}>
- <div className="flex items-center space-x-2">
+    <div className={`w-full max-w-60 p-4 pr-0  ${active ? '' : 'hidden'} `}>
+      <Calendar onChange={handleSetDate} value={currentDate} />
+
       <Label htmlFor="airplane-mode">Tasks</Label>
       <Switch id="airplane-mode" />
       <Label htmlFor="airplane-mode">Ev</Label>
       <Switch id="airplane-mode" />
-    </div>
-    
-    <DropdownMenu>
+
+      <DropdownMenu>
         <DropdownMenuTrigger className="w-full">
           <Button
             variant={'outline'}
@@ -34,14 +35,16 @@ export function AppSidebar({active}:any) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-              {['Day', 'Week', 'Month'].map((view) => (
-              <DropdownMenuItem key={view} onClick={() => handleViewChange(view?.toLowerCase() as any)}>
-                {view.charAt(0).toUpperCase() + view.slice(1)}
-              </DropdownMenuItem>
-            ))}
+          {['Day', 'Week', 'Month'].map((view) => (
+            <DropdownMenuItem
+              key={view}
+              onClick={() => handleViewChange(view?.toLowerCase() as any)}
+            >
+              {view.charAt(0).toUpperCase() + view.slice(1)}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
-
     </div>
   );
 }

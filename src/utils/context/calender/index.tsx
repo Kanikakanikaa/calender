@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useRef, type ReactNode } from 'react';
+import {  createContext, useState, useRef, type ReactNode } from 'react';
 interface CalContextType {
   currentDate?:any,
   currentView?:any,
@@ -7,8 +7,8 @@ const initialState:CalContextType = {
   currentView: 'month',
   currentDate: new Date(),
 };
-export const calStateContext = createContext<any>(initialState);
-const { Provider } = calStateContext;
+export const calenderStateContext = createContext<any>(initialState);
+const { Provider } = calenderStateContext;
 
 export const CalenderContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, setState] = useState(initialState);
@@ -47,12 +47,21 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
       currentDate: newDate,
     }));
   };
+
+  const handleSetDate=(val:string)=>{
+    console.log({val});
+     setState((prev: any) => ({
+      ...prev,
+      currentDate: val,
+    }));
+  }
   return (
     <Provider
       value={{
         ...state,
         handleNavigate,
         handleViewChange,
+        handleSetDate
       }}
     >
       {children}
@@ -60,4 +69,3 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
   );
 };
 
-export const useCalender = () => useContext(calStateContext);
