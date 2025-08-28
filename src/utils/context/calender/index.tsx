@@ -1,9 +1,9 @@
-import {  createContext, useState, useRef, type ReactNode } from 'react';
+import { createContext, useState, useRef, type ReactNode } from 'react';
 interface CalContextType {
-  currentDate?:any,
-  currentView?:any,
+  currentDate?: any;
+  currentView?: any;
 }
-const initialState:CalContextType = {
+const initialState: CalContextType = {
   currentView: 'month',
   currentDate: new Date(),
 };
@@ -48,24 +48,47 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
     }));
   };
 
-  const handleSetDate=(val:string)=>{
-    console.log({val});
-     setState((prev: any) => ({
+  const handleSetDate = (val: string) => {
+    console.log({ val });
+    setState((prev: any) => ({
       ...prev,
       currentDate: val,
     }));
-  }
+  };
+  const handleAcions = (activeStartDate: any) => {
+    let newDate = state.currentDate;
+    switch (activeStartDate?.action) {
+      case 'prev':
+        state.currentDate.setMonth(state.currentDate.getMonth() - 1);
+        break;
+      case 'next':
+        state.currentDate.setMonth(state.currentDate.getMonth() + 1);
+        break;
+         case 'prev2':
+      newDate.setFullYear(newDate.getFullYear() - 1);
+      break;
+    case 'next2':
+      newDate.setFullYear(newDate.getFullYear() + 1);
+      break;
+       default:
+      break;
+    }
+    setState((prev: any) => ({
+      ...prev,
+      currentDate: newDate,
+    }));
+  };
   return (
     <Provider
       value={{
         ...state,
         handleNavigate,
         handleViewChange,
-        handleSetDate
+        handleSetDate,
+        handleAcions,
       }}
     >
       {children}
     </Provider>
   );
 };
-

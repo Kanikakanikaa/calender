@@ -15,9 +15,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useCalender } from '@/utils/hooks/useCalender';
+import moment from 'moment';
 
 export default function Header({ active, setActive }: any) {
-  const { handleNavigate, handleViewChange, currentView } = useCalender();
+  const { handleNavigate, handleViewChange, currentView,currentDate } = useCalender();
 
   return (
     <div className="w-full min-h-16 flex justify-between items-center pr-4 text-black/80">
@@ -50,8 +51,9 @@ export default function Header({ active, setActive }: any) {
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
               <ChevronRightIcon width={20} height={20} onClick={() => handleNavigate('NEXT')} />
             </div>
+            
           </div>
-          <div className="text-xl">August 2025</div>
+          <div className="text-xl">{moment(currentDate).format('DD MMMM YYYY')}</div>
         </div>
       </div>
       <div className="flex justify-end w-full gap-3">

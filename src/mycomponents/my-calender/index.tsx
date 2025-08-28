@@ -18,11 +18,11 @@ const events = [
     start: moment('2025-08-26T16:12:00').toDate(),
     end: moment('2025-08-26T18:12:00').toDate(),
   },
-];
+];  
 
 function MyCalendar({ localizer }: any) {
   const { calendarRef, currentDate, currentView } = useCalender();
-  console.log({ currentView });
+  console.log({ currentView },currentDate);
 
   return (
     <div className="p-4 w-full h-full bg-white  rounded-3xl customCalendar">
