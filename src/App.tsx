@@ -3,6 +3,8 @@ import './App.css';
 // import { router } from './router'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-calendar/dist/Calendar.css';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import Layout from './Layout';
 import { CalenderContextProvider } from './utils/context/calender';
 

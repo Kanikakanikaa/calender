@@ -1,21 +1,72 @@
-import { createContext, useState, useRef, type ReactNode } from 'react';
+import moment from 'moment';
+import { createContext, useState, useRef, type ReactNode, useEffect } from 'react';
+
+const event = [
+  {
+    title: 'Meeting',
+    start: moment('2025-08-21T16:12:00').toDate(),
+    end: moment('2025-08-21T18:12:00').toDate(),
+  },
+  {
+    title: 'Meeting1',
+    start: moment('2025-08-22T16:12:00').toDate(),
+    end: moment('2025-08-22T18:12:00').toDate(),
+    type:'task'
+
+  },
+  {
+    title: 'Meeting2',
+    start: moment('2025-08-26T16:12:00').toDate(),
+    end: moment('2025-08-26T18:12:00').toDate(),
+  },
+  {
+    title: 'Meeting3',
+    start: moment('2025-08-26T16:12:00').toDate(),
+    end: moment('2025-08-26T18:12:00').toDate(),
+    type:'task'
+  },
+];
 interface CalContextType {
   currentDate?: any;
   currentView?: any;
+  events?:Array<Object>|[];
+  filterEvents?:any
+  task:Boolean;
+  event:Boolean;
 }
 const initialState: CalContextType = {
   currentView: 'month',
   currentDate: new Date(),
+  events:event  ,
+  filterEvents:[],
+  task:true,
+  event:true,
+  
+
 };
+
 export const calenderStateContext = createContext<any>(initialState);
 const { Provider } = calenderStateContext;
 
 export const CalenderContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState(initialState);  
 
-  const calRef = useRef(null);
-  console.log({ calRef });
+  useEffect(() => {
+    const updated:any=state.events
+   if(state.task){
+  updated.filter((e: any) => e.type === "task")
+   }
+  //  if(state.events){
+  //  updated.filter((e: any) => e.type === "event")
 
+  //  }
+   console.log({updated});
+    setState((prev: any) => ({
+      ...prev,
+      filterEvents:updated
+    }));
+  }, [state.task,state.event,state.events])
+  
   const handleViewChange = (view: string) => {
     setState((prev: any) => ({
       ...prev,
@@ -56,17 +107,19 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
     }));
   };
   const handleAcions = (activeStartDate: any) => {
-    let newDate = state.currentDate;
+    const newDate = state.currentDate;
     switch (activeStartDate?.action) {
       case 'prev':
         state.currentDate.setMonth(state.currentDate.getMonth() - 1);
         break;
+        
       case 'next':
         state.currentDate.setMonth(state.currentDate.getMonth() + 1);
         break;
          case 'prev2':
       newDate.setFullYear(newDate.getFullYear() - 1);
       break;
+
     case 'next2':
       newDate.setFullYear(newDate.getFullYear() + 1);
       break;
@@ -74,10 +127,28 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
       break;
     }
     setState((prev: any) => ({
+
       ...prev,
       currentDate: newDate,
     }));
   };
+  const handleSelectType=(show:boolean,type:string)=>{
+    console.log(show,{type});
+    if(type==='task'){
+       setState((prev:any)=>({
+    ...prev,
+    task:show
+   }))
+  }
+  else{
+    setState((prev:any)=>({
+    ...prev,
+    event:show
+   }))
+  }
+
+  }
+  
   return (
     <Provider
       value={{
@@ -86,6 +157,7 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
         handleViewChange,
         handleSetDate,
         handleAcions,
+        handleSelectType
       }}
     >
       {children}

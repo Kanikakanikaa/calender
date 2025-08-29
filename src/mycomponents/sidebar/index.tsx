@@ -7,17 +7,17 @@ import { ChevronDownIcon } from 'lucide-react';
 import Calendar from 'react-calendar';
 
 export function AppSidebar({ active }: any) {
-  const { handleSetDate, handleViewChange, currentView, currentDate,handleAcions } = useCalender();
+  const { handleSetDate, handleViewChange, currentView, currentDate,handleAcions,handleSelectType,task,event } = useCalender();
 
   return (
     <div className={`w-full max-w-60 p-4 pr-0  ${active ? '' : 'hidden'} `}>
       <Calendar onChange={handleSetDate} value={currentDate}  onActiveStartDateChange={handleAcions} />
-
+<div>
       <Label htmlFor="Tasks">Tasks</Label>
-      <Switch id="Tasks " />
+      <Switch id="Tasks " checked={task} onCheckedChange={(e:any)=>handleSelectType(e,'task')} />  
       <Label htmlFor="Events">Events</Label>
-      <Switch id="Events" />
-
+      <Switch id="Events"  checked={event} onCheckedChange={(e:any)=>handleSelectType(e,'event')} />
+</div>    
       <DropdownMenu>
         <DropdownMenuTrigger className="w-full">
           <Button
