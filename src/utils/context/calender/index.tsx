@@ -28,10 +28,10 @@ const event = [
 interface CalContextType {
   currentDate?: any;
   currentView?: any;
-  events?: Array<Object> | [];
+  events?: Array<object> | [];
   filterEvents?: any;
-  task: Boolean;
-  event: Boolean;
+  task: boolean;
+  event: boolean;
 }
 const initialState: CalContextType = {
   currentView: 'month',
