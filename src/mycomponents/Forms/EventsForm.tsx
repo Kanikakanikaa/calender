@@ -10,6 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { UserPlusIcon } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
 type EventFormValues = {
   title: string;
   start: Date | null;
@@ -40,75 +43,205 @@ function EventsForm({ addEvent }: any) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid gap-2">
-        <Label htmlFor="title">Title</Label>
-        <Input
-          id="title"
-          value={title || ''}
-          {...register('title', { required: 'Title is required' })}
-          onChange={(e) => {
-            setValue('title', e.target.value, { shouldValidate: true });
-          }}
-        />
-        {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
-      </div>
-
-      <div className="grid gap-2">
-        <Label htmlFor="type">Type</Label>
-        <Select
-          value={type}
-          onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
-          {...register('type', { required: 'Select Type' })}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="task">Task</SelectItem>
-            <SelectItem value="event">Event</SelectItem>
-          </SelectContent>
-        </Select>
-        {errors.type && <span className="text-red-500 text-sm">{errors.type.message}</span>}
-      </div>
-
-      <div className="grid gap-2">
-        <Label>Date & Time</Label>
-        <div className="flex gap-4 w-full">
-          {/* From Date */}
-          <div className="flex flex-col w-1/2 gap-1">
-            <span className="text-sm font-medium">From</span>
-            <DatePicker
-              selected={start || null}
-              onChange={(date) => setValue('start', date)}
-              showTimeSelect
-              timeIntervals={15}
-              dateFormat="MM/dd/yyyy h:mm aa"
-              placeholderText="Select start date"
-              className="w-full border px-2 py-2 rounded"
+      <div className="flex flex-col gap-3 w-full border rounded-t-md">
+        <div className="flex w-full border-b min-h-10 bg-gray-100">
+          <div className="px-3 min-w-20 font-medium flex justify-center items-center text-sm cursor-pointer border-b border-contrast text-contrast">
+            Events
+          </div>
+          <div className="px-3 min-w-20 font-medium flex justify-center items-center text-sm cursor-pointer border-b border-white ">
+            Task
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 p-4 max-h-[calc(100vh-250px)] overflow-auto">
+          <div className="flex justify-between items-center">
+            <Label className="text-sm">Asia/kolkata, india</Label>
+            <div className="max-w-24 cursor-pointer w-full px-2 flex justify-center items-center min-h-10 border rounded-md border-contrast hover:bg-contrast hover:text-white text-contrast text-sm">
+              Select
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <Label className="text-sm" htmlFor="title">
+              Meeting topic
+            </Label>
+            <Input
+              id="title"
+              value={title || ''}
+              {...register('title', { required: 'Title is required' })}
+              onChange={(e) => {
+                setValue('title', e.target.value, { shouldValidate: true });
+              }}
             />
+            {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
+          </div>
+          <div className="flex gap-3 w-full">
+            <div className="w-full flex flex-col gap-1">
+              <Label className="text-sm" htmlFor="title">
+                Meeting Date
+              </Label>
+              <Input />
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <Label className="text-sm" htmlFor="title">
+                Start Time
+              </Label>
+              <Input />
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <Label className="text-sm" htmlFor="title">
+                &nbsp;
+              </Label>
+              <Select
+                value={type}
+                onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                {...register('type', { required: 'Select Type' })}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="task">30</SelectItem>
+                  <SelectItem value="event">45</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <Label className="text-sm" htmlFor="title">
+              Estimated Duration
+            </Label>
+            <div className="flex gap-2 w-full overflow-auto">
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border border-contrast text-white bg-contrast rounded-sm">
+                15 min
+              </div>
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border hover:text-white hover:bg-contrast rounded-sm">
+                30 min
+              </div>
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border hover:text-white hover:bg-contrast rounded-sm">
+                45 min
+              </div>
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border hover:text-white hover:bg-contrast rounded-sm">
+                1:30 hr
+              </div>
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border hover:text-white hover:bg-contrast rounded-sm">
+                2 hr
+              </div>
+              <div className="min-h-8 px-3 justify-center whitespace-nowrap items-center text-sm flex border hover:text-white hover:bg-contrast rounded-sm">
+                2:30 hr
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 py-3">
+            <div className="flex gap-4 justify-between items-center w-full">
+              <Label className="text-sm" htmlFor="Tasks">
+                Allow join meeting before host
+              </Label>
+              <Switch />
+            </div>
+            <div className="flex gap-4 justify-between items-center w-full">
+              <Label className="text-sm" htmlFor="Tasks">
+                Need Password to join meeting
+              </Label>
+              <Switch />
+            </div>
+          </div>
+          <div className="flex justify-end w-full pb-3">
+            <div className="max-w-44 cursor-pointer w-full px-2 gap-2  flex justify-center items-center min-h-10 border rounded-md border-contrast hover:bg-contrast hover:text-white text-contrast text-sm">
+              <UserPlusIcon width={18} height={18} /> Invite Participants
+            </div>
+          </div>
+          <div className="flex gap-4 justify-between items-center w-full">
+            <Label className="text-sm" htmlFor="Tasks">
+              Need Password to join meeting
+            </Label>
+            <Switch />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <Label className="text-sm" htmlFor="title">
+              Reminder Mode
+            </Label>
+            <Select
+              value={type}
+              onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+              {...register('type', { required: 'Select Type' })}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="task">Demo@teck.com</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <Label className="text-sm" htmlFor="title">
+              Decription
+            </Label>
+            <div className="w-full">
+              <Textarea />
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label className="text-sm" htmlFor="type">
+              Type
+            </Label>
+            <Select
+              value={type}
+              onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+              {...register('type', { required: 'Select Type' })}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="task">Task</SelectItem>
+                <SelectItem value="event">Event</SelectItem>
+              </SelectContent>
+            </Select>
+            {errors.type && <span className="text-red-500 text-sm">{errors.type.message}</span>}
           </div>
 
-          {/* To Date */}
-          <div className="flex flex-col w-1/2 gap-1">
-            <span className="text-sm font-medium">To</span>
-            <DatePicker
-              selected={end || null}
-              onChange={(date) => setValue('end', date)}
-              showTimeSelect
-              timeIntervals={15}
-              dateFormat="MM/dd/yyyy h:mm aa"
-              placeholderText="Select end date"
-              minDate={start || new Date()}
-              disabled={!start}
-              className="w-full border px-2 py-2 rounded"
-            />
+          <div className="grid gap-2">
+            <Label className="text-sm">Date & Time</Label>
+            <div className="flex gap-4 w-full">
+              {/* From Date */}
+              <div className="flex flex-col w-1/2 gap-1">
+                <span className="text-sm font-medium">From</span>
+                <DatePicker
+                  selected={start || null}
+                  onChange={(date) => setValue('start', date)}
+                  showTimeSelect
+                  timeIntervals={15}
+                  dateFormat="MM/dd/yyyy h:mm aa"
+                  placeholderText="Select start date"
+                  className="w-full border px-2 py-2 rounded"
+                />
+              </div>
+
+              {/* To Date */}
+              <div className="flex flex-col w-1/2 gap-1">
+                <span className="text-sm font-medium">To</span>
+                <DatePicker
+                  selected={end || null}
+                  onChange={(date) => setValue('end', date)}
+                  showTimeSelect
+                  timeIntervals={15}
+                  dateFormat="MM/dd/yyyy h:mm aa"
+                  placeholderText="Select end date"
+                  minDate={start || new Date()}
+                  disabled={!start}
+                  className="w-full border px-2 py-2 rounded"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       <div className="flex justify-center">
-        <Button type="submit" className="px-6">
-          Save changes
+        <Button
+          type="submit"
+          className="px-6 min-w-32 bg-contrast text-white hover:bg-contrast cursor-pointer h-10"
+        >
+          Save
         </Button>
       </div>
     </form>
