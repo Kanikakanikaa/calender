@@ -18,7 +18,7 @@ import { useCalender } from '@/utils/hooks/useCalender';
 import moment from 'moment';
 
 export default function Header({ active, setActive }: any) {
-  const { handleNavigate, handleViewChange, currentView,currentDate } = useCalender();
+  const { handleNavigate, handleViewChange, currentView, currentDate } = useCalender();
 
   return (
     <div className="w-full min-h-16 flex justify-between items-center pr-4 text-black/80">
@@ -51,12 +51,11 @@ export default function Header({ active, setActive }: any) {
             <div className="min-w-8 max-w-8 max-h-8 min-h-8 flex justify-center items-center rounded-full cursor-pointer hover:bg-black/5">
               <ChevronRightIcon width={20} height={20} onClick={() => handleNavigate('NEXT')} />
             </div>
-            
           </div>
           <div className="text-xl">{moment(currentDate).format('DD MMMM YYYY')}</div>
         </div>
       </div>
-      <div className="flex justify-end w-full gap-3">
+      <div className="flex justify-end  gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -95,7 +94,7 @@ export default function Header({ active, setActive }: any) {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer bg-contrast hover:bg-contrast/80 ">
+        <div className="min-h-10 min-w-10 max-h-10 max-w-10 flex justify-center items-center rounded-full cursor-pointer bg-contrast hover:bg-contrast/80 text-white">
           <UserIcon width={20} height={20} />
         </div>
       </div>

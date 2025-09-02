@@ -12,7 +12,7 @@
         &.rbc-month-header {
           background: rgba(0, 0, 0, 1);
           // color: rgba(0, 0, 0, 0.8);
-          color: rgb(21, 237, 231);
+          color: rgb(25, 175, 171);
           border-radius: 16px 16px 0 0;
           min-height: 60px;
           padding-top: 5px;
@@ -30,7 +30,7 @@
       .rbc-row-bg {
         .rbc-day-bg {
           &.rbc-today {
-            background-color: rgba(21, 237, 231, 0.1);
+            background-color: rgba(25, 175, 171, 0.1);
           }
           &.rbc-off-range-bg {
             background: rgba(0, 0, 0, 0.03);
@@ -44,7 +44,7 @@
           }
           .rbc-row-segment {
             .rbc-event {
-              background-color: rgb(21, 237, 231);
+              background-color: rgb(25, 175, 171);
               color: #000;
               font-size: 13px;
             }
@@ -66,6 +66,11 @@
         //     width: 66.9px;
         //   }
         // }
+        &.rbc-overflowing {
+          background-color: #000;
+          margin: 0 !important;
+          padding-right: 14px;
+        }
         .rbc-time-header-content {
           border: none;
           .rbc-allday-cell {
@@ -78,13 +83,13 @@
                 .rbc-button-link {
                   min-height: 60px;
                   span {
-                    color: rgb(21, 237, 231);
+                    color: rgb(25, 175, 171);
                     font-weight: 400;
                     font-size: 18px;
                   }
                 }
                 &.rbc-today {
-                  background: rgba(21, 237, 231, 0.3);
+                  background: rgba(25, 175, 171, 0.3);
                   span {
                     color: #fff;
                   }
@@ -96,9 +101,11 @@
       }
       .rbc-time-content {
         max-height: calc(100vh - 173px);
+        border: none;
         .rbc-time-gutter {
           .rbc-timeslot-group {
             .rbc-time-slot {
+              padding-top: 7px;
               span {
                 color: rgba(0, 0, 0, 0.6);
                 font-size: 13px;
@@ -109,7 +116,7 @@
         .rbc-day-slot {
           &.rbc-now {
             &.rbc-today {
-              background-color: rgba(21, 237, 231, 0.1);
+              background-color: rgba(25, 175, 171, 0.1);
               span {
                 color: rgba(0, 0, 0, 0.8);
               }
@@ -117,15 +124,83 @@
           }
           .rbc-events-container {
             .rbc-event {
-              background: rgb(21, 237, 231);
+              background: rgb(25, 175, 171);
               color: #000;
-              border-color: rgb(21, 237, 231);
+              border-color: rgb(25, 175, 171);
               font-size: 13px;
             }
           }
           .rbc-current-time-indicator {
-            background-color: rgb(21, 237, 231);
+            background-color: rgb(25, 175, 171);
           }
+        }
+      }
+    }
+  }
+}
+
+.customReactCalendar {
+  .react-calendar {
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    &__navigation {
+      align-items: center;
+      display: flex;
+      height: auto;
+      &__label {
+        font-size: 16px;
+        &:hover {
+          background-color: transparent !important;
+        }
+      }
+      &__arrow {
+        border-radius: 8px;
+        font-size: 16px;
+        width: 20px;
+        min-width: 20px;
+        max-width: 20px;
+        min-height: 20px;
+        max-height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    &__month-view {
+      &__weekdays {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+        margin-bottom: 5px;
+        &__weekday {
+          abbr {
+            text-decoration: none;
+          }
+        }
+      }
+      &__days {
+        gap: 9px;
+        &__day {
+          width: 24px;
+          min-height: 24px;
+          height: 24px;
+          max-width: 24px;
+          padding: 0;
+          min-width: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 100%;
+        }
+      }
+    }
+    &__tile {
+      &--active {
+        background-color: rgb(25, 175, 171);
+        color: #fff;
+        border: none;
+        &:hover,
+        &:focus {
+          background-color: rgb(25, 175, 171);
         }
       }
     }

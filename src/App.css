@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 @theme {
   --color-contrast: oklch(0.8555 0.1452 191.49);
+  --color-contrast: oklch(0.6831 0.1135 191.86);
 
   /* --color-grey: oklch(0.7584 0.0145 258.35); */
 
