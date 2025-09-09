@@ -21,7 +21,7 @@ type EventFormValues = {
   type: string;
 };
 
-function EventsForm({ addEvent }: any) {
+function EventsForm({ addEvent,handleClose }: any) {
   const [activeTab, setActiveTab] = useState('events');
   const {
     register,
@@ -99,13 +99,35 @@ function EventsForm({ addEvent }: any) {
                   <Label className="text-sm" htmlFor="title">
                     Meeting Date
                   </Label>
-                  <Input />
+                   <DatePicker
+                      selected={start || null}
+                      onChange={(date) => setValue('start', date)}
+                      // showTimeSelect
+                      // timeIntervals={15}
+                      dateFormat="MM/dd/yyyy"
+                      placeholderText="Select date"
+                      className="w-full border px-2 py-2 rounded"
+                    />
+                  {/* <Input /> */}
                 </div>
                 <div className="w-full flex flex-col gap-1">
                   <Label className="text-sm" htmlFor="title">
                     Start Time
                   </Label>
-                  <Input />
+                  
+                   <Select
+                    value={type}
+                    onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
+                    {...register('type', { required: 'Select Type' })}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="task">30</SelectItem>
+                      <SelectItem value="event">45</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="w-full flex flex-col gap-1">
                   <Label className="text-sm" htmlFor="title">
@@ -113,7 +135,7 @@ function EventsForm({ addEvent }: any) {
                   </Label>
                   <Select
                     value={type}
-                    onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                    onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
                     {...register('type', { required: 'Select Type' })}
                   >
                     <SelectTrigger className="w-full">
@@ -176,13 +198,13 @@ function EventsForm({ addEvent }: any) {
                 </Label>
                 <Switch />
               </div>
-              <div className="w-full flex flex-col gap-1">
+              {/* <div className="w-full flex flex-col gap-1">
                 <Label className="text-sm" htmlFor="title">
                   Reminder Mode
                 </Label>
                 <Select
                   value={type}
-                  onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                  onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
                   {...register('type', { required: 'Select Type' })}
                 >
                   <SelectTrigger className="w-full">
@@ -192,7 +214,7 @@ function EventsForm({ addEvent }: any) {
                     <SelectItem value="task">Demo@teck.com</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
               <div className="w-full flex flex-col gap-1">
                 <Label className="text-sm" htmlFor="title">
                   Decription
@@ -207,7 +229,7 @@ function EventsForm({ addEvent }: any) {
                 </Label>
                 <Select
                   value={type}
-                  onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                  onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
                   {...register('type', { required: 'Select Type' })}
                 >
                   <SelectTrigger className="w-full">
@@ -300,7 +322,7 @@ function EventsForm({ addEvent }: any) {
                   </Label>
                   <Select
                     value={type}
-                    onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                    onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
                     {...register('type', { required: 'Select Type' })}
                   >
                     <SelectTrigger className="w-full">
@@ -331,7 +353,7 @@ function EventsForm({ addEvent }: any) {
                 </Label>
                 <Select
                   value={type}
-                  onValueChange={(val) => setValue('type', val, { shouldValidate: true })}
+                  onValueChange={(val:any) => setValue('type', val, { shouldValidate: true })}
                   {...register('type', { required: 'Select Type' })}
                 >
                   <SelectTrigger className="w-full">
@@ -357,7 +379,8 @@ function EventsForm({ addEvent }: any) {
       <div className="flex justify-center gap-2">
         <Button
           variant={'outline'}
-          type="submit"
+          // type="submit"
+          onClick={handleClose}
           className="px-6 min-w-32 cursor-pointer h-10 bg-gray-100 "
         >
           Cancel

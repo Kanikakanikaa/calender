@@ -25,7 +25,7 @@ export default function AddEvent({
       </DialogTrigger>
       <DialogContent
         className="w-full min-w-[650px] "
-        onInteractOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e:any) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle>
@@ -49,7 +49,7 @@ export default function AddEvent({
             </DialogDescription> */}
         </DialogHeader>
         <div className="w-full ">
-          <EventsForm addEvent={addEvent} />
+          <EventsForm addEvent={addEvent} handleClose={handleClose} />
         </div>
       </DialogContent>
     </Dialog>

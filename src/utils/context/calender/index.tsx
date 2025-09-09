@@ -4,19 +4,21 @@ import { createContext, useState, type ReactNode, useEffect } from 'react';
 const event = [
   {
     title: 'Meeting',
-    start: moment('2025-08-21T16:12:00').toDate(),
-    end: moment('2025-08-21T18:12:00').toDate(),
+    start: moment('2025-09-17T16:12:00').toDate(),
+    end: moment('2025-09-18T18:12:00').toDate(),
+    type: 'event',
   },
   {
     title: 'Meeting1',
-    start: moment('2025-08-22T16:12:00').toDate(),
-    end: moment('2025-08-22T18:12:00').toDate(),
+    start: moment('2025-09-22T16:12:00').toDate(),
+    end: moment('2025-09-22T18:12:00').toDate(),
     type: 'task',
   },
   {
     title: 'Meeting2',
-    start: moment('2025-08-26T16:12:00').toDate(),
-    end: moment('2025-08-26T18:12:00').toDate(),
+    start: moment('2025-09-26T16:12:00').toDate(),
+    end: moment('2025-09-26T18:12:00').toDate(),
+    type: 'event',
   },
   {
     title: 'Meeting3',
@@ -37,7 +39,7 @@ const initialState: CalContextType = {
   currentView: 'month',
   currentDate: new Date(),
   events: event,
-  filterEvents: [],
+  filterEvents: event,
   task: true,
   event: true,
 };
@@ -49,20 +51,20 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
-    const updated: any = state.events;
-    if (state.task) {
-      updated.filter((e: any) => e.type === 'task');
-    }
-    //  if(state.events){
-    //  updated.filter((e: any) => e.type === "event")
-
-    //  }
+    let updated: any = state.events;
+     if (state.task && state.event) {
+    updated = updated.filter((e: any) => e.type === 'task' || e.type === 'event');
+  } else if (state.task) {
+    updated = updated.filter((e: any) => e.type === 'task');
+  } else if (state.event) {
+    updated = updated.filter((e: any) => e.type === 'event');
+  }
     console.log({ updated });
     setState((prev: any) => ({
       ...prev,
       filterEvents: updated,
     }));
-  }, [state.task, state.event, state.events]);
+  }, [state.task, state.event]);
 
   const handleViewChange = (view: string) => {
     setState((prev: any) => ({
@@ -129,13 +131,12 @@ export const CalenderContextProvider = ({ children }: { children: ReactNode }) =
     }));
   };
   const handleSelectType = (show: boolean, type: string) => {
-    console.log(show, { type });
     if (type === 'task') {
       setState((prev: any) => ({
         ...prev,
         task: show,
       }));
-    } else {
+    } else if (type === 'event') {
       setState((prev: any) => ({
         ...prev,
         event: show,

@@ -24,8 +24,8 @@ function MyCalendar({ localizer }: any) {
     (event: any, e: any) => {
       const rect = e.currentTarget.getBoundingClientRect();
       setAnchorPos({
-        x: rect.left + rect.width / 2, // center horizontally
-        y: rect.top, // position above event
+        x: rect.left + rect.width / 2, 
+        y: rect.top, 
       });
       setSelectedEvent(event);
     },
